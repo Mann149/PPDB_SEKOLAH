@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Registrasi</title>
+    <style>
+        /* CSS untuk mempercantik tampilan */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .register-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .register-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box; /* Pastikan padding tidak merusak lebar */
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #218838;
+        }
+
+        .message {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Buat Akun</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Masukkan username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="contoh@mail.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Minimal 6 karakter" required>
+            </div>
+            <button type="submit" class="btn-submit">Daftar Sekarang</button>
+        </form>
+        <div id="responseMessage" class="message"></div>
+    </div>
+
+    <script>
+        // JavaScript untuk menangani pengiriman form
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah reload halaman
+
+            // Mengambil nilai dari input
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('responseMessage');
+
+            // Validasi sederhana
+            if (password.length < 6) {
+                messageDiv.style.color = "red";
+                messageDiv.innerText = "Password minimal harus 6 karakter!";
+                return;
+            }
+
+            // Simulasi proses pendaftaran
+            messageDiv.style.color = "green";
+            messageDiv.innerText = "Registrasi berhasil! Halo, " + username + ".";
+
+            // Kosongkan form setelah sukses
+            this.reset();
+            
+            console.log("Data Terkirim:", { username, email, password });
+        });
+    </script>
+
+</body>
+</html>
